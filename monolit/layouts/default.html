@@ -19,9 +19,9 @@
             document.onkeydown = function() 
                 {
                     var j = event.keyIdentifier
-                    if (j == "Left")
+                    if (j == "Left" && nextUrl != null)
                         window.location = nextUrl
-                    else if (j == "Right")
+                    else if (j == "Right" && prevUrl != null)
                         window.location = prevUrl            
                         }
                    });

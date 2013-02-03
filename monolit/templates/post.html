@@ -5,8 +5,8 @@
 		{{ if next  !=  url }}<a href="{{ next }}" class="link-left">&nbsp;</a>{{ endif }}		
 	</div>
 	<div id="image-navigate-container" class="inside">
-		{{ if next  !=  url }}<a href="{{ next }}" class="image-navigate-left" id="next_page_link">≪ Next Photo</a>{{ else }}<a href="{{ url }}" class="image-navigate-left" id="next_page_link"></a>{{ endif}}
-	    {{ if prev  !=  url }}<a href="{{ prev }}" class="image-navigate-right" id="previous_page_link">Previous Photo ≫</a>{{ else }}<a href="{{ url }}" class="image-navigate-right" id="previous_page_link"></a>{{ endif}}	<!-- Alas, we have to render empty links on the first and last picture, for the navigation javascript to work -->	
+		{{ if next  !=  url }}<a href="{{ next }}" class="image-navigate-left" id="next_page_link">≪ Next Photo</a>{{ endif}}
+	    {{ if prev  !=  url }}<a href="{{ prev }}" class="image-navigate-right" id="previous_page_link">Previous Photo ≫</a>{{ endif}}	
 	</div>
 	<div class="content" >
 		<div class="inside" >
