@@ -4,12 +4,12 @@
 		  <h2>Archive</h2>
 		  <div class="archives">
 		  	<p>
-			{{ entries:listing folder="photos" limit="18" }}
+			{{ entries:listing folder="photos" limit="36" }}
 				<a href="{{ raw_url }}"><img src="../assets/img/thumbs/{{ thumb }}" alt="{{ title }}" width="120" height="80"></a>
 			{{ /entries:listing }}
 		  	</p>
 		  </div>
-		  {{ entries:pagination folder="photos" limit="18"}}
+		  {{ entries:pagination folder="photos" limit="36"}}
 		  	<div id="image-navigate-container" class="inside">
 	      		{{ if previous_page }}
 	      			<a href="{{ previous_page }}" class="image-navigate-left">≪ Previous Page</a>
