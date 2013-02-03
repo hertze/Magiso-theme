@@ -12,10 +12,10 @@
 		  {{ entries:pagination folder="photos" limit="36"}}
 		  	<div id="image-navigate-container" class="inside">
 	      		{{ if previous_page }}
-	      			<a href="{{ previous_page }}" class="image-navigate-left">≪ Previous Page</a>
+	      			<a href="{{ previous_page }}" class="image-navigate-left" id="next_page_link">≪ Previous Page</a>
 	      		{{ endif }}
 	      		{{ if next_page }}
-	      			<a href="{{ next_page }}" class="image-navigate-right">Next Page ≫</a>
+	      			<a href="{{ next_page }}" class="image-navigate-right" id="previous_page_link">Next Page ≫</a>
 	      		{{ endif }}
 	      {{ /entries:pagination }}
 		  </div>
