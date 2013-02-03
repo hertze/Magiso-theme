@@ -1,0 +1,16 @@
+###########################################################################################
+#
+#  THEME VARIABLES
+#
+###########################################################################################
+
+# Theme name
+theme_name: Monolit
+
+# Comments + Disqus
+disqus_account: magiso
+show_comments: no
+
+
+# Global text snippets
+no_results_text: "Sorry, no results found."

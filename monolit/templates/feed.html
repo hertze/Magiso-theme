@@ -1,0 +1,23 @@
+	<channel>
+    
+    <title><![CDATA[{{ _site_name }}]]></title>
+    <link>{{ _site_url }}</link>
+    <description>{{ _site_name }}</description>
+    <dc:language>en-gb</dc:language>
+    <dc:creator>magiso@hertze.com</dc:creator>
+    <dc:rights>Copyright {{ current_date format='Y' }}</dc:rights>
+    <dc:date>{{ current_date format="c" }}</dc:date>
+    <admin:generatorAgent rdf:resource="http://statamic.com/" />
+    
+    {{ entries:listing folder="photos" limit="10" }}
+    <item>
+      <title><![CDATA[{{ title }}]]></title>
+      <link>{{ permalink }}</link>
+      <guid>{{ permalink }}</guid>
+      <description><![CDATA[<img src="{{ _site_url }}/assets/img/photos/{{ photo }}" alt="{{ title }}">{{ content }}]]></description>
+      <dc:subject><![CDATA[{{ categories_list }}]]></dc:subject>
+      <dc:date>{{ datestamp format="c" }}</dc:date>
+    </item>
+    {{ /entries:listing }}
+    
+    </channel>

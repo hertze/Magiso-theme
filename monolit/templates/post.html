@@ -1,0 +1,30 @@
+<div class="cf">
+	<div id="image">
+		<img src="/assets/img/photos/{{ photo }}" alt="{{ title }}" >
+		{{ if prev  !=  url }}<a href="{{ prev }}" class="link-right">&nbsp;</a>{{ endif }}
+		{{ if next  !=  url }}<a href="{{ next }}" class="link-left">&nbsp;</a>{{ endif }}		
+	</div>
+	<div id="image-navigate-container" class="inside">
+		{{ if next  !=  url }}<a href="{{ next }}" class="image-navigate-left" id="next_page_link">≪ Next Photo</a>{{ else }}<a href="{{ url }}" class="image-navigate-left" id="next_page_link"></a>{{ endif}}
+	    {{ if prev  !=  url }}<a href="{{ prev }}" class="image-navigate-right" id="previous_page_link">Previous Photo ≫</a>{{ else }}<a href="{{ url }}" class="image-navigate-right" id="previous_page_link"></a>{{ endif}}	<!-- Alas, we have to render empty links on the first and last picture, for the navigation javascript to work -->	
+	</div>
+	<div class="content" >
+		<div class="inside" >
+			<h2>{{ title }}</h2>
+			{{ content }}
+			<!-- Get Exif from photo -->
+			{{ exif imagepath='assets/img/photos/{photo}' }}
+					{{ if model }} <!-- If model exists render all Exif -->
+						<ul class="exif">
+							<li>{{ camera }}</li>
+							<li>{{ flenght }}</li>
+							<li>{{ aperture }}</li>
+							<li>{{ exposure }}</li>
+							<li>{{ iso }}</li>
+						</ul>	
+					{{ endif }}
+			{{ /exif }} 
+			<p class="metadata">{{ datestamp format="F jS, Y" }}</p>
+		</div>
+	</div>
+</div>
