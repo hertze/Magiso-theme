@@ -191,6 +191,11 @@ h3 {
 	padding-bottom: 2em;
 	}
 
+#footer p {
+	margin: 0;
+	width: 100%;
+	color: #9d9c9e;
+}
 
 /* IMAGE NAVIGATION */
 #image-navigate-container {
@@ -212,15 +217,14 @@ h3 {
 .image-navigate-left {
 	position: absolute;
 	left: 0;
-
 	z-index: 2;
 	}
 
 .image-navigate-center {
 	position: absolute;
-	width: 100%;
 	left: 0;
 	right: 0;
+	width: 15em;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -230,7 +234,6 @@ h3 {
 .image-navigate-right {
 	position: absolute;
 	right: 0;
-	
 	text-align: right;
 	z-index: 2;
 	}
@@ -294,12 +297,40 @@ li {
 
 /*Comments*/
 
-#commentform p {
-	color: #797979;
+.comment-header {
+	margin: 2.4em 0 1.2em 0;
 }
 
-#commentform li {
+#comments {
+	color: #797979;
+	list-style-type: none;
+	padding: 0 0 0 2.4em;
+	margin-bottom: 3.6em;
+}
+
+#post-comment p {
+	margin: 0.6em 0 0.6em 2.4em;
+
+}
+
+#comments li p {
 	line-height: 1.2em;
+	margin:0.6em 0;
+}
+
+#comments li {
+	margin: 1.2em 0;
+	width: 60%;
+}
+
+#comments .joakim {
+	background-color: #ececec;
+	padding: 0.5em 1em;
+	margin: 0 0 0 -1em;
+	border-radius: 5px;
+}
+
+.comment-meta {
 }
 
 small {
@@ -312,19 +343,22 @@ li cite {
 	font-style: normal;
 }
 
-#author, #email, #url {
-	border: 1px solid #ccc;
+#username, #email, #website {
 	font-size: 0.8em;
 	padding: 0.5em;
 	width: 50%;
-
+	border: 10px solid #ececec;
+	border-radius: 5px;
+	margin-left: -10px;
 }
 
 #comment {
-	border: 1px solid #ccc;
+	border: 10px solid #ececec;
+	border-radius: 5px;
 	font-size: 0.8em;
 	padding: 0.5em;
 	width: 100%;
+	margin-left: -10px;
 }
 
 .exif {

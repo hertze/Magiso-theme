@@ -1,11 +1,16 @@
 <div class="cf">
 	<div id="image">
-		<img src="/assets/img/photos/{{ photo }}" alt="{{ title }}" >
+		<img src="{{ photo }}" alt="{{ title }}" >
 		{{ if prev  !=  url }}<a href="{{ prev }}" class="link-right">&nbsp;</a>{{ endif }}
 		{{ if next  !=  url }}<a href="{{ next }}" class="link-left">&nbsp;</a>{{ endif }}		
 	</div>
 	<div id="image-navigate-container" class="inside">
 		{{ if next  !=  url }}<a href="{{ next }}" class="image-navigate-left" id="next_page_link">≪ Next Photo</a>{{ endif}}
+		<?php if (isset($_GET['comments'])) { ?>
+				<a href="{{ permalink }}" class="image-navigate-center">Hide comments</a>
+		<?php } else { ?>
+				<a href="{{ permalink }}?comments#comments" class="image-navigate-center">Show comments</a>
+		<?php } ?>
 	    {{ if prev  !=  url }}<a href="{{ prev }}" class="image-navigate-right" id="previous_page_link">Previous Photo ≫</a>{{ endif}}	
 	</div>
 	<div class="content" >
@@ -13,7 +18,7 @@
 			<h2>{{ title }}</h2>
 			{{ content }}
 			<!-- Get Exif from photo -->
-			{{ exif imagepath='assets/img/photos/{photo}' }}
+			{{ exif imagepath='{photo}' }}
 					{{ if model }} <!-- If model exists render all Exif -->
 						<ul class="exif">
 							<li>{{ camera }}</li>
@@ -25,6 +30,60 @@
 					{{ endif }}
 			{{ /exif }} 
 			<p class="metadata">{{ datestamp format="F jS, Y" }}</p>
+			
+			<?php if (isset($_GET['comments'])) { ?> <!-- Are comments on? -->
+					<h3 class="comment-header">Comments</h3>
+					<ul id="comments">
+					{{ commentatic:listing }}
+				    	
+				          {{ if no_results }}
+				            <li>Be the first to leave a mark. Use the form below.</li>
+				          {{ else }}
+				          	<li{{ if email=='joakim@hertze.com' }} class="joakim" {{ endif }}><p class="comment-meta">{{ if website !="" }}<a href="{{ website }}">{{ username }}</a>{{ else }}{{ username }}{{ endif }}, on <em>{{ last_modified format="F jS, Y" }}:</em></p>{{ content }}</li>
+				          {{ endif }}
+				  
+				    {{ /commentatic:listing }}
+				    </ul>  
+				    {{ commentatic:form honeypot="true" id="post-comment" }}
+					      {{ if error}}
+					          <h2>Error</h2>
+					          <ul>
+					          {{ errors }}
+					              <li>{{error}}</li>
+					          {{ /errors }}
+					          </ul>
+					      {{ endif }}
+					  
+					      {{ if success }}
+					          <p>Your message has been sent!</p>
+					      {{ else }}
+					          {{ if logged_in }}
+					          
+					            <p>Logged in as <strong>{{ username }}</strong></p>
+					          
+					          {{ else }}
+					          <p>
+					              <label for="username">Username*:</label><br />
+					              <input type="text" name="username" id="username" value="{{ post:username }}" placeholder="Your username or real name">
+					          </p>
+					          <p>
+					              <label  for="email">Email*:</label><br />
+					              <input type="text" name="email" id="email" value="{{ post:email }}" placeholder="Your email address">
+					          </p>
+					          <p>
+					              <label  for="website">Website:</label><br />
+					              <input type="text" name="website" id="website" value="{{ post:website }}" placeholder="Your website address">
+					          </p>
+					          {{ endif }}
+					          <p>
+					            <label for="comment">Your comment*:</label>
+					            <textarea class="span6" type="text" rows="5" name="comment" id="comment" placeholder="Your thoughts here!">{{ post:comment }}</textarea>
+					          </p>
+					          <p><input value="Send comment" type="submit"></p>
+					      {{ endif }}
+					  {{ /commentatic:form }}		
+			<?php } ?>
+			
 		</div>
 	</div>
 </div>
