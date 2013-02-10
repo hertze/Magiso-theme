@@ -87,7 +87,8 @@ h3 {
 .archives p {
 	margin: 0;
 	padding: 0;
-	width: 100%;
+	width: 808px;
+	margin: 0 auto;
 }
 
 .archives a img {
@@ -224,7 +225,7 @@ h3 {
 	position: absolute;
 	left: 0;
 	right: 0;
-	width: 15em;
+	width: 20em;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -361,20 +362,40 @@ li cite {
 	margin-left: -10px;
 }
 
-.exif {
-	margin: 0;
+#the-fold {
+	margin: 1.2em 0;
 }
 
-.exif li {
-	display: inline; 
-	background-color: #fff;
-	padding: 0.3em 0.6em;
-	margin-right: 0.8em;
-	margin-left: -0.7em;
-	border: 1px solid #dddcde;
-	border-radius: 8px;
+/* Tags */
+
+.tags {
+	margin: 0 0 0 1.85em;
+}
+
+.archives .tags {
+	margin-bottom: 1.2em;
+}
+
+.tags a {
 	color: #a8a7a8;
+	background-color: #fff;
+	border: 1px solid #dddcde;
+	padding: 0.3em 0.6em;
+	margin: 0 0.1em 0 0;
+	border-radius: 8px;
 	font-size: 90%;
+	line-height: 2.2em;
+}
+
+.tags a:hover, .archives .tags a:hover {
+	background: #eef1fc;
+	color: #a8a7a8;
+}
+
+.tags em {
+	font-weight: normal;
+	font-style: normal;
+	color: #d8d6d8;
 }
 
 .typekit-badge {

@@ -6,10 +6,10 @@
 	</div>
 	<div id="image-navigate-container" class="inside">
 		{{ if next  !=  url }}<a href="{{ next }}" class="image-navigate-left" id="next_page_link">≪ Next Photo</a>{{ endif}}
-		<?php if (isset($_GET['comments'])) { ?>
-				<a href="{{ permalink }}" class="image-navigate-center">Hide comments</a>
+		<?php if (isset($_GET['fold'])) { ?>
+				<a href="{{ permalink }}" class="image-navigate-center">&mdash; Fold away tags & comments</a>
 		<?php } else { ?>
-				<a href="{{ permalink }}?comments#comments" class="image-navigate-center">Show comments</a>
+				<a href="{{ permalink }}?fold#the-fold" class="image-navigate-center">&#xFF0B; Fold out tags & comments</a>
 		<?php } ?>
 	    {{ if prev  !=  url }}<a href="{{ prev }}" class="image-navigate-right" id="previous_page_link">Previous Photo ≫</a>{{ endif}}	
 	</div>
@@ -17,21 +17,26 @@
 		<div class="inside" >
 			<h2>{{ title }}</h2>
 			{{ content }}
-			<!-- Get Exif from photo -->
-			{{ exif imagepath='{photo}' }}
+			<p class="metadata">
+				{{ exif imagepath='{photo}' }}
 					{{ if model }} <!-- If model exists render all Exif -->
-						<ul class="exif">
-							<li>{{ camera }}</li>
-							<li>{{ flenght }}</li>
-							<li>{{ aperture }}</li>
-							<li>{{ exposure }}</li>
-							<li>{{ iso }}</li>
-						</ul>	
+						Shot with {{ indefinite_article}} {{ camera }}, with {{ aperture }} at {{ exposure }}, with a focal length of {{ flenght }}.
 					{{ endif }}
-			{{ /exif }} 
-			<p class="metadata">{{ datestamp format="F jS, Y" }}</p>
+				{{ /exif }}
+				Published on {{ datestamp format="F jS, Y" }}.
+			</p>
+
+			<?php if (isset($_GET['fold'])) { ?> <!-- Are comments on? -->
 			
-			<?php if (isset($_GET['comments'])) { ?> <!-- Are comments on? -->
+			<div id="the-fold">
+					{{ if tags }}
+						<p class="tags">
+							{{ tags }}
+							<a href="{{ url }}">{{ name }}</a>
+						{{ /tags }}
+						</p>
+					{{ endif }}
+					
 					<h3 class="comment-header">Comments</h3>
 					<ul id="comments">
 					{{ commentatic:listing }}
@@ -59,29 +64,26 @@
 					      {{ else }}
 					          {{ if logged_in }}
 					          
-					            <p>Logged in as <strong>{{ username }}</strong></p>
+					            <p>Logged in as <strong>{{ username }}</strong> | <a href="{{ member:logout return='{ url }' }}">Log out</a></p>
 					          
 					          {{ else }}
 					          <p>
-					              <label for="username">Username*:</label><br />
-					              <input type="text" name="username" id="username" value="{{ post:username }}" placeholder="Your username or real name">
+					              <input type="text" name="username" id="username" value="{{ post:username }}" placeholder="Your username or real name (required)">
 					          </p>
 					          <p>
-					              <label  for="email">Email*:</label><br />
-					              <input type="text" name="email" id="email" value="{{ post:email }}" placeholder="Your email address">
+					              <input type="text" name="email" id="email" value="{{ post:email }}" placeholder="Your email address (required)">
 					          </p>
 					          <p>
-					              <label  for="website">Website:</label><br />
 					              <input type="text" name="website" id="website" value="{{ post:website }}" placeholder="Your website address">
 					          </p>
 					          {{ endif }}
 					          <p>
-					            <label for="comment">Your comment*:</label>
 					            <textarea class="span6" type="text" rows="5" name="comment" id="comment" placeholder="Your thoughts here!">{{ post:comment }}</textarea>
 					          </p>
 					          <p><input value="Send comment" type="submit"></p>
 					      {{ endif }}
-					  {{ /commentatic:form }}		
+					  {{ /commentatic:form }}
+			</div>		
 			<?php } ?>
 			
 		</div>

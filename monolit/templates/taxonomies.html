@@ -1,0 +1,23 @@
+<div class="cf">
+	<div class="content" >
+		<div class="inside" >
+			<h2>Archive &mdash; photos tagged with &ldquo;{{ taxonomy_slug|deslugify }}&rdquo;</h2>
+			<div class="archives">
+		  	<p>
+			{{ entries:listing folder="photos" limit="30" taxonomy="yes" }}
+				 <a href="{{ raw_url }}"><img src="{{ thumb }}" alt="{{ title }}" width="120" height="80"></a>
+			{{ /entries:listing }}
+			</p>
+			</div>
+			{{ entries:pagination folder="photos" limit="30" taxonomy="yes"}}
+		  	<div id="image-navigate-container" class="inside">
+	      		{{ if previous_page }}
+	      			<a href="{{ previous_page }}" class="image-navigate-left" id="next_page_link">≪ Previous Page</a>
+	      		{{ endif }}
+	      		{{ if next_page }}
+	      			<a href="{{ next_page }}" class="image-navigate-right" id="previous_page_link">Next Page ≫</a>
+	      		{{ endif }}
+	      {{ /entries:pagination }}
+		</div>
+	</div>
+</div>
